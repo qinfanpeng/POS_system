@@ -38,14 +38,14 @@ public class Product {
     }
 
 
-    private void doPromotion() {
+    private void doPromotion(int amount) {
         for (Promotion promotion : getPromotionList()) {
-            promotion.doPromotion(this);
+            promotion.doPromotion(amount, this);
         }
     }
 
-    public double getPromotionPrice() {
-        this.doPromotion();
+    public double getPromotionPrice(int amount) {
+        this.doPromotion(amount);
         return promotionPrice;
     }
 

@@ -34,4 +34,13 @@ public class PriceCalculatorTest {
 
         assertThat(priceCalculator.calculate(), is(5.0));
     }
+
+    @Test
+    public void should_calculate_total_price_with_second_half() throws Exception {
+
+        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf());
+        shoppingCart.add(3, pearWithDiscount);
+
+        assertThat(priceCalculator.calculate(), is(25.0));
+    }
 }

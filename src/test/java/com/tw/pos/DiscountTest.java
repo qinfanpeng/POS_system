@@ -28,7 +28,7 @@ public class DiscountTest {
     public void should_be_discount_product() throws Exception {
         Product fiveDiscountApple = new Product(apple, 8).with(new Discount(5));
 
-        assertThat(fiveDiscountApple.getPromotionPrice(), is(4d));
+        assertThat(fiveDiscountApple.getPromotionPrice(1), is(4d));
     }
 
 
