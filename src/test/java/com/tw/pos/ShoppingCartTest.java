@@ -5,7 +5,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static com.tw.pos.ProductName.Pear;
+import static com.tw.pos.ProductName.pear;
 import static com.tw.pos.ProductName.apple;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,10 +31,10 @@ public class ShoppingCartTest{
     @Test
     public void should_add_products() throws Exception {
         shoppingCart.add(1, new Product(apple, 5));
-        shoppingCart.add(2, new Product(Pear, 7));
+        shoppingCart.add(2, new Product(pear, 7));
 
         assertThat(shoppingCart.getAmountOf(apple), is(1));
-        assertThat(shoppingCart.getAmountOf(Pear), is(2));
+        assertThat(shoppingCart.getAmountOf(pear), is(2));
     }
 
     @Test

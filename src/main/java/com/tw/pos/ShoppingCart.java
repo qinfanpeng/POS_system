@@ -56,4 +56,8 @@ public class ShoppingCart {
             productItemList.remove(productItem);
         }
     }
+
+    public List<ProductItem> getProductItemList() {
+        return productItemList;
+    }
 }

@@ -23,4 +23,9 @@ public class ProductItem {
     public ProductName getProductName() {
         return product.getName();
     }
+
+    public double getSubtotal() {
+        product.doPromotion();
+        return product.getPrice() * amount;
+    }
 }
