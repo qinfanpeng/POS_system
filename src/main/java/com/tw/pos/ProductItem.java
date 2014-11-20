@@ -1,8 +1,5 @@
 package com.tw.pos;
 
-/**
- * Created by fpqin on 14/11/20.
- */
 public class ProductItem {
     private int amount;
     private Product product;
@@ -25,7 +22,6 @@ public class ProductItem {
     }
 
     public double getSubtotal() {
-        product.doPromotion();
-        return product.getPrice() * amount;
+        return product.getPromotionPrice() * amount;
     }
 }

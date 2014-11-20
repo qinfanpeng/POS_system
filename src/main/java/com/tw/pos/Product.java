@@ -10,11 +10,14 @@ public class Product {
 
     private ProductName name;
     private double price;
+    private double promotionPrice;
+
     private List<Promotion> promotionList = new ArrayList<>();
 
     public Product(ProductName name, double price) {
         this.name = name;
         this.price = price;
+        this.promotionPrice = price;
     }
 
     public ProductName getName() {
@@ -30,18 +33,23 @@ public class Product {
         return this;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public List<Promotion> getPromotionList() {
         return promotionList;
     }
 
 
-    public void doPromotion() {
+    private void doPromotion() {
         for (Promotion promotion : getPromotionList()) {
             promotion.doPromotion(this);
         }
+    }
+
+    public double getPromotionPrice() {
+        this.doPromotion();
+        return promotionPrice;
+    }
+
+    public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }
