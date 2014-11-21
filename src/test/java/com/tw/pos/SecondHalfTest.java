@@ -26,28 +26,24 @@ public class SecondHalfTest {
 
     @Test
     public void should_apply_this_when_buy_2_products() throws Exception {
-
         secondHalf.apply(2, apple);
         assertThat(apple.getPromotionPrice(), closeTo(7.5, 0.1));
     }
 
     @Test
     public void should_apply_this_when_buy_3_products() throws Exception {
-
         secondHalf.apply(3, apple);
         assertThat(apple.getPromotionPrice(), closeTo(8.3, 0.1));
     }
 
     @Test
     public void should_apply_this_when_buy_4_products() throws Exception {
-
         secondHalf.apply(4, apple);
         assertThat(apple.getPromotionPrice(), closeTo(7.5, 0.1));
     }
 
     @Test
     public void should_apply_this_when_buy_5_products() throws Exception {
-
         secondHalf.apply(5, apple);
         assertThat(apple.getPromotionPrice(), closeTo(8.0, 0.1));
     }

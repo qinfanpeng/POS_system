@@ -7,9 +7,9 @@ public class SecondHalf implements Promotion {
 
         for (int i = 1; i<= amount; i++) {
             if (i % 2 == 0 ) {
-                promotionTotalPrice += product.getPrice() / 2;
+                promotionTotalPrice += product.getPromotionPrice() / 2;
             } else {
-                promotionTotalPrice += product.getPrice();
+                promotionTotalPrice += product.getPromotionPrice();
             }
         }
 
