@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static com.tw.pos.ProductName.apple;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -26,9 +25,12 @@ public class DiscountTest {
 
     @Test
     public void should_be_discount_product() throws Exception {
-        Product fiveDiscountApple = new Product(apple, 8).with(new Discount(5));
+        Discount fiveDiscount = new Discount(5);
+        Product apple = new Product(ProductName.apple, 8);
 
-        assertThat(fiveDiscountApple.getPromotionPrice(1), is(4d));
+        fiveDiscount.apply(1, apple);
+
+        assertThat(apple.getPromotionPrice(), is(4d));
     }
 
 

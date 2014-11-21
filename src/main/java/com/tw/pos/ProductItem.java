@@ -22,6 +22,7 @@ public class ProductItem {
     }
 
     public double getSubtotal() {
-        return product.getPromotionPrice(amount) * amount;
+        product.applyPromotion(amount);
+        return product.getPromotionPrice() * amount;
     }
 }
