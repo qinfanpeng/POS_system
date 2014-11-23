@@ -1,6 +1,7 @@
-package com.tw.pos;
+package com.tw.pos.promotionRules;
 
-import com.tw.pos.promotionRules.Discount;
+import com.tw.pos.Product;
+import com.tw.pos.ProductName;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -39,6 +40,4 @@ public class DiscountTest {
 
         assertThat(apple.getPromotionPrice(), is(4d));
     }
-
-
 }

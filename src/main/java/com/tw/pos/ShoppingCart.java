@@ -3,9 +3,6 @@ package com.tw.pos;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by fpqin on 14/11/20.
- */
 public class ShoppingCart {
     private List<ProductItem> productItemList = new ArrayList<ProductItem>();
 

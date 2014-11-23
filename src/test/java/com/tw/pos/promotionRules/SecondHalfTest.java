@@ -1,6 +1,7 @@
-package com.tw.pos;
+package com.tw.pos.promotionRules;
 
-import com.tw.pos.promotionRules.SecondHalf;
+import com.tw.pos.Product;
+import com.tw.pos.ProductName;
 import org.junit.Before;
 import org.junit.Test;
 
