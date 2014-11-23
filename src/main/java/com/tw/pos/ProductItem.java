@@ -1,6 +1,6 @@
 package com.tw.pos;
 
-public class ProductItem {
+public class ProductItem extends Promotable {
     private int amount;
     private Product product;
 
@@ -23,5 +23,14 @@ public class ProductItem {
 
     public double getSubtotal() {
         return product.getPromotionPrice() * amount;
+    }
+
+    @Override
+    public double getPromotionPrice() {
+        return getSubtotal();
+    }
+
+    @Override
+    public void setPromotionPrice(double promotionPrice) {
     }
 }
