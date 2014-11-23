@@ -92,10 +92,9 @@ public class PriceCalculatorTest {
 
     @Test
     public void should_calculate_total_price_with_reduce_x_yuan_when_reaching_100() throws Exception {
-        Product pear = new Product(ProductName.pear, 10).with(new ReduceXUponReaching100(5.0));
-        pear.promote();
+        Product pear = new Product(ProductName.pear, 10);
 
-        shoppingCart.add(10, pear);
+        shoppingCart.add(10, pear, new ReduceXUponReaching100(5));
 
         assertThat(priceCalculator.calculate(), closeTo(95, 0.1));
     }

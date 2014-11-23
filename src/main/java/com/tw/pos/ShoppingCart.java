@@ -1,17 +1,28 @@
 package com.tw.pos;
 
+import com.tw.pos.promotionRules.Promotion;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    private List<ProductItem> productItemList = new ArrayList<ProductItem>();
+    private List<ProductItem> productItemList = new ArrayList<>();
 
-    public void add(int amount, Product product) {
+    public void add(int amount, Product product, Promotion... promotions) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Can't add (" + amount + ")product");
         }
-        ProductItem productItem = new ProductItem(amount, product);
+        ProductItem productItem = productItem(amount, product, promotions);
         productItemList.add(productItem);
+    }
+
+    private ProductItem productItem(int amount, Product product, Promotion[] promotions) {
+        ProductItem productItem = new ProductItem(amount, product);
+        for(Promotion promotion : promotions) {
+            productItem.with(promotion);
+        }
+        productItem.promote();
+        return productItem;
     }
 
     public int getAmountOf(ProductName productName) {

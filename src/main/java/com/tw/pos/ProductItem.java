@@ -1,12 +1,16 @@
 package com.tw.pos;
 
+import com.tw.pos.promotionRules.Promotion;
+
 public class ProductItem extends Promotable {
     private int amount;
     private Product product;
+    private double promotionPrice;
 
     public ProductItem(int amount, Product product) {
         this.amount = amount;
         this.product = product;
+        this.promotionPrice = product.getPromotionPrice() * amount;
     }
 
     public int getAmount() {
@@ -22,15 +26,22 @@ public class ProductItem extends Promotable {
     }
 
     public double getSubtotal() {
-        return product.getPromotionPrice() * amount;
+        return promotionPrice;
+    }
+
+    @Override
+    public ProductItem with(Promotion promotion) {
+        super.with(promotion);
+        return this;
     }
 
     @Override
     public double getPromotionPrice() {
-        return getSubtotal();
+        return promotionPrice;
     }
 
     @Override
     public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }
