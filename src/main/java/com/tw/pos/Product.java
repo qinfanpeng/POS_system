@@ -21,10 +21,6 @@ public class Product {
         return name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     public Product with(Promotion promotion) {
         promotionList.add(promotion);
         return this;
@@ -34,10 +30,9 @@ public class Product {
         return promotionList;
     }
 
-
-    public void applyPromotion(int amount) {
+    public void applyPromotion() {
         for (Promotion promotion : getPromotionList()) {
-            promotion.apply(amount, this);
+            promotion.apply(this);
         }
     }
 

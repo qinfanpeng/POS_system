@@ -34,7 +34,7 @@ public class DiscountTest {
         Discount fiveDiscount = new Discount(5);
         Product apple = new Product(ProductName.apple, 8);
 
-        fiveDiscount.apply(1, apple);
+        fiveDiscount.apply(apple);
 
         assertThat(apple.getPromotionPrice(), is(4d));
     }

@@ -51,7 +51,7 @@ public class ShoppingCartTest{
     }
 
     @Test
-    public void should_throw_exception_when_remove_a_not_exist_product() throws Exception {
+    public void should_throw_exception_when_remove_a_non_exist_product() throws Exception {
         expectedException.expectMessage("Can't find any apple to remove!");
         shoppingCart.remove(1, apple);
     }

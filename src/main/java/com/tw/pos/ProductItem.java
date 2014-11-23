@@ -22,7 +22,7 @@ public class ProductItem {
     }
 
     public double getSubtotal() {
-        product.applyPromotion(amount);
+        product.applyPromotion();
         return product.getPromotionPrice() * amount;
     }
 }

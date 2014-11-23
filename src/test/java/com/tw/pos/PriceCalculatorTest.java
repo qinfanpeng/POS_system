@@ -39,7 +39,7 @@ public class PriceCalculatorTest {
     @Test
     public void should_calculate_total_price_with_second_half() throws Exception {
 
-        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf());
+        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf(3));
         shoppingCart.add(3, pearWithDiscount);
 
         assertThat(priceCalculator.calculate(), is(25.0));
@@ -48,7 +48,7 @@ public class PriceCalculatorTest {
     @Test
     public void should_calculate_total_price_with_discount_and_second_half() throws Exception {
         Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
-                .with(new SecondHalf())
+                .with(new SecondHalf(3))
                 .with(new Discount(5));
 
         shoppingCart.add(3, pearWithDiscountAndSecondHalf);
@@ -60,7 +60,7 @@ public class PriceCalculatorTest {
     public void should_calculate_total_price_with__second_half_and_discount() throws Exception {
         Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
                 .with(new Discount(7.5))
-                .with(new SecondHalf());
+                .with(new SecondHalf(5));
 
         shoppingCart.add(5, pearWithDiscountAndSecondHalf);
 
@@ -71,9 +71,9 @@ public class PriceCalculatorTest {
     public void should_calculate_total_price_with__second_half_and_discount_in_multiple_item() throws Exception {
         Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
                 .with(new Discount(7.5))
-                .with(new SecondHalf());
+                .with(new SecondHalf(5));
 
-        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf());
+        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf(3));
 
         shoppingCart.add(5, pearWithDiscountAndSecondHalf);
         shoppingCart.add(3, pearWithDiscount);

@@ -16,7 +16,7 @@ public class Discount implements Promotion{
     }
 
     @Override
-    public void apply(int amount, Product product) {
+    public void apply(Product product) {
         product.setPromotionPrice(product.getPromotionPrice() * (rate / 10));
     }
 }

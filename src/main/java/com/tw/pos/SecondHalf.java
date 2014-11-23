@@ -1,8 +1,14 @@
 package com.tw.pos;
 
 public class SecondHalf implements Promotion {
+    private int amount;
+
+    public SecondHalf(int amount) {
+        this.amount = amount;
+    }
+
     @Override
-    public void apply(int amount, Product product) {
+    public void apply(Product product) {
         double promotionTotalPrice = 0.0;
 
         for (int i = 1; i<= amount; i++) {
