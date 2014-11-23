@@ -1,5 +1,7 @@
 package com.tw.pos;
 
+import com.tw.pos.promotionRules.Discount;
+import com.tw.pos.promotionRules.SecondHalf;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,6 +33,7 @@ public class PriceCalculatorTest {
     public void should_calculate_total_price_with_discount() throws Exception {
 
         Product pearWithDiscount = new Product(pear, 5).with(new Discount(5));
+        pearWithDiscount.promote();
         shoppingCart.add(2, pearWithDiscount);
 
         assertThat(priceCalculator.calculate(), is(5.0));
@@ -40,6 +43,7 @@ public class PriceCalculatorTest {
     public void should_calculate_total_price_with_second_half() throws Exception {
 
         Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf(3));
+        pearWithDiscount.promote();
         shoppingCart.add(3, pearWithDiscount);
 
         assertThat(priceCalculator.calculate(), is(25.0));
@@ -51,29 +55,33 @@ public class PriceCalculatorTest {
                 .with(new SecondHalf(3))
                 .with(new Discount(5));
 
+        pearWithDiscountAndSecondHalf.promote();
         shoppingCart.add(3, pearWithDiscountAndSecondHalf);
 
         assertThat(priceCalculator.calculate(), closeTo(12.5, 0.1));
     }
 
     @Test
-    public void should_calculate_total_price_with__second_half_and_discount() throws Exception {
+    public void should_calculate_total_price_with_second_half_and_discount_in_multiple_item() throws Exception {
         Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
                 .with(new Discount(7.5))
                 .with(new SecondHalf(5));
 
+        pearWithDiscountAndSecondHalf.promote();
         shoppingCart.add(5, pearWithDiscountAndSecondHalf);
 
         assertThat(priceCalculator.calculate(), closeTo(30, 0.1));
     }
 
     @Test
-    public void should_calculate_total_price_with__second_half_and_discount_in_multiple_item() throws Exception {
+    public void should_calculate_total_price_with_second_half_and_discount() throws Exception {
         Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
                 .with(new Discount(7.5))
                 .with(new SecondHalf(5));
+        pearWithDiscountAndSecondHalf.promote();
 
         Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf(3));
+        pearWithDiscount.promote();
 
         shoppingCart.add(5, pearWithDiscountAndSecondHalf);
         shoppingCart.add(3, pearWithDiscount);

@@ -1,15 +1,11 @@
 package com.tw.pos;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.tw.pos.promotionRules.Promotion;
 
-public class Product {
-
+public class Product extends Promotable {
     private ProductName name;
     private double price;
     private double promotionPrice;
-
-    private List<Promotion> promotionList = new ArrayList<>();
 
     public Product(ProductName name, double price) {
         this.name = name;
@@ -21,19 +17,13 @@ public class Product {
         return name;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     public Product with(Promotion promotion) {
-        promotionList.add(promotion);
+        super.with(promotion);
         return this;
-    }
-
-    public List<Promotion> getPromotionList() {
-        return promotionList;
-    }
-
-    public void applyPromotion() {
-        for (Promotion promotion : getPromotionList()) {
-            promotion.apply(this);
-        }
     }
 
     public double getPromotionPrice() {

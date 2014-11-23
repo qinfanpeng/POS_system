@@ -1,5 +1,6 @@
 package com.tw.pos;
 
+import com.tw.pos.promotionRules.SecondHalf;
 import org.junit.Before;
 import org.junit.Test;
 

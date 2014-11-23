@@ -1,6 +1,8 @@
-package com.tw.pos;
+package com.tw.pos.promotionRules;
 
-public class Discount implements Promotion{
+import com.tw.pos.Promotable;
+
+public class Discount implements Promotion {
     private double rate;
 
     public Discount(double rate) {
@@ -12,11 +14,11 @@ public class Discount implements Promotion{
 
     private boolean moreThanOneDecimal(double rate) {
         String number = Double.toString(rate);
-        return number.substring(number.indexOf('.')+1).length() > 1;
+        return number.substring(number.indexOf('.') + 1).length() > 1;
     }
 
     @Override
-    public void apply(Product product) {
-        product.setPromotionPrice(product.getPromotionPrice() * (rate / 10));
+    public void apply(Promotable goods) {
+        goods.setPromotionPrice(goods.getPromotionPrice() * (rate / 10));
     }
 }

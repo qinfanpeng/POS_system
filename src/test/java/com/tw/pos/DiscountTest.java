@@ -1,5 +1,6 @@
 package com.tw.pos;
 
+import com.tw.pos.promotionRules.Discount;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
