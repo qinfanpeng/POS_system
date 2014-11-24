@@ -5,20 +5,23 @@ import com.tw.pos.promotionRules.Promotion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
+public class ShoppingCart extends Promotable {
     private List<ProductItem> productItemList = new ArrayList<>();
+    private double promotionPrice;
 
-    public void add(int amount, Product product, Promotion... promotions) {
+    public ShoppingCart add(int amount, Product product, Promotion... promotions) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Can't add (" + amount + ")product");
         }
-        ProductItem productItem = productItem(amount, product, promotions);
-        productItemList.add(productItem);
+        productItemList.add(productItem(amount, product, promotions));
+
+        updatePromotionPrice();
+        return this;
     }
 
     private ProductItem productItem(int amount, Product product, Promotion[] promotions) {
         ProductItem productItem = new ProductItem(amount, product);
-        for(Promotion promotion : promotions) {
+        for (Promotion promotion : promotions) {
             productItem.with(promotion);
         }
         productItem.promote();
@@ -28,7 +31,9 @@ public class ShoppingCart {
     public int getAmountOf(ProductName productName) {
         ProductItem productItem = findProductItemBy(productName);
         int amount = 0;
-        if (productItem != null) { amount = productItem.getAmount(); }
+        if (productItem != null) {
+            amount = productItem.getAmount();
+        }
         return amount;
     }
 
@@ -51,7 +56,7 @@ public class ShoppingCart {
         int newAmount = productItem.getAmount() - amount;
 
         if (newAmount < 0) {
-            throw new IllegalArgumentException("There're no " + amount + " " + productName +"s to remove!");
+            throw new IllegalArgumentException("There're no " + amount + " " + productName + "s to remove!");
         }
 
         updateProductItemList(newAmount, productItem);
@@ -63,9 +68,24 @@ public class ShoppingCart {
         } else {
             productItemList.remove(productItem);
         }
+        updatePromotionPrice();
     }
 
-    public List<ProductItem> getProductItemList() {
-        return productItemList;
+    private void updatePromotionPrice() {
+        double totalPrice = 0.0;
+        for (ProductItem productItem : productItemList) {
+            totalPrice += productItem.getSubtotal();
+        }
+        this.promotionPrice = totalPrice;
+    }
+
+    @Override
+    public double getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    @Override
+    public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }

@@ -98,4 +98,13 @@ public class PriceCalculatorTest {
 
         assertThat(priceCalculator.calculate(), closeTo(95, 0.1));
     }
+
+    @Test
+    public void should_calculate_total_price_for_shoppingcart_with_reduce_x_yuan_when_reacing_100() throws Exception {
+        Product pear = new Product(ProductName.pear, 10);
+
+        shoppingCart.add(11, pear, new ReduceXUponReaching100(5)).with(new ReduceXUponReaching100(3)).promote();
+
+        assertThat(priceCalculator.calculate(), closeTo(102, 0.1));
+    }
 }

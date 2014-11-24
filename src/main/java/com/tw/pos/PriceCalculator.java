@@ -8,10 +8,6 @@ public class PriceCalculator {
     }
 
     public double calculate() {
-        double totalPrice = 0.0;
-        for (ProductItem productItem : shoppingCart.getProductItemList()) {
-            totalPrice += productItem.getSubtotal();
-        }
-        return totalPrice;
+        return shoppingCart.getPromotionPrice();
     }
 }
