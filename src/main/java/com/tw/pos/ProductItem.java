@@ -1,11 +1,8 @@
 package com.tw.pos;
 
-import com.tw.pos.promotionRules.Promotion;
-
-public class ProductItem extends Promotable {
+public class ProductItem extends Promotable<ProductItem> {
     private int amount;
     private Product product;
-    private double promotionPrice;
 
     public ProductItem(int amount, Product product) {
         this.amount = amount;
@@ -27,12 +24,6 @@ public class ProductItem extends Promotable {
 
     public double getSubtotal() {
         return promotionPrice;
-    }
-
-    @Override
-    public ProductItem with(Promotion promotion) {
-        super.with(promotion);
-        return this;
     }
 
     @Override

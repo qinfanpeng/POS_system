@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ShoppingCart extends Promotable {
     private List<ProductItem> productItemList = new ArrayList<>();
-    private double promotionPrice;
 
     public ShoppingCart add(int amount, Product product, Promotion... promotions) {
         if (amount <= 0) {
