@@ -34,7 +34,7 @@ public class DiscountTest {
     @Test
     public void should_be_discount_product() throws Exception {
         Discount fiveDiscount = new Discount(5);
-        Product apple = new Product(ProductName.apple, 8);
+        Product apple = new Product(ProductName.APPLE, 8);
 
         fiveDiscount.apply(apple);
 

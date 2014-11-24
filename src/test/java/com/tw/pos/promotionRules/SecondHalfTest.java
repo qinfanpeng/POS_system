@@ -17,7 +17,7 @@ public class SecondHalfTest {
     @Before
     public void setUp() throws Exception {
         secondHalf = new SecondHalf(1);
-        apple = new Product(ProductName.apple, 10.0);
+        apple = new Product(ProductName.APPLE, 10.0);
     }
 
     @Test

@@ -12,7 +12,7 @@ public class ReduceXUponReaching100Test {
     @Test
     public void should_reduce_5_yuan_when_product_price_reach_100() throws Exception {
         ReduceXUponReaching100 rule = new ReduceXUponReaching100(5);
-        Product apple = new Product(ProductName.apple, 100);
+        Product apple = new Product(ProductName.APPLE, 100);
 
         rule.apply(apple);
 

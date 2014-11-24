@@ -25,7 +25,7 @@ public class PriceCalculatorTest {
     @Test
     public void should_calculate_total_price() throws Exception {
 
-        shoppingCart.add(2, new Product(pear, 5));
+        shoppingCart.add(2, new Product(PEAR, 5));
 
         assertThat(priceCalculator.calculate(), is(10.0));
     }
@@ -33,7 +33,7 @@ public class PriceCalculatorTest {
     @Test
     public void should_calculate_total_price_with_discount() throws Exception {
 
-        Product pearWithDiscount = new Product(pear, 5).with(new Discount(5));
+        Product pearWithDiscount = new Product(PEAR, 5).with(new Discount(5));
         pearWithDiscount.promote();
         shoppingCart.add(2, pearWithDiscount);
 
@@ -43,7 +43,7 @@ public class PriceCalculatorTest {
     @Test
     public void should_calculate_total_price_with_second_half() throws Exception {
 
-        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf(3));
+        Product pearWithDiscount = new Product(PEAR, 10).with(new SecondHalf(3));
         pearWithDiscount.promote();
         shoppingCart.add(3, pearWithDiscount);
 
@@ -52,7 +52,7 @@ public class PriceCalculatorTest {
 
     @Test
     public void should_calculate_total_price_with_discount_and_second_half() throws Exception {
-        Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
+        Product pearWithDiscountAndSecondHalf = new Product(PEAR, 10)
                 .with(new SecondHalf(3))
                 .with(new Discount(5));
 
@@ -64,7 +64,7 @@ public class PriceCalculatorTest {
 
     @Test
     public void should_calculate_total_price_with_second_half_and_discount_in_multiple_item() throws Exception {
-        Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
+        Product pearWithDiscountAndSecondHalf = new Product(PEAR, 10)
                 .with(new Discount(7.5))
                 .with(new SecondHalf(5));
 
@@ -76,12 +76,12 @@ public class PriceCalculatorTest {
 
     @Test
     public void should_calculate_total_price_with_second_half_and_discount() throws Exception {
-        Product pearWithDiscountAndSecondHalf = new Product(pear, 10)
+        Product pearWithDiscountAndSecondHalf = new Product(PEAR, 10)
                 .with(new Discount(7.5))
                 .with(new SecondHalf(5));
         pearWithDiscountAndSecondHalf.promote();
 
-        Product pearWithDiscount = new Product(pear, 10).with(new SecondHalf(3));
+        Product pearWithDiscount = new Product(PEAR, 10).with(new SecondHalf(3));
         pearWithDiscount.promote();
 
         shoppingCart.add(5, pearWithDiscountAndSecondHalf);
@@ -92,7 +92,7 @@ public class PriceCalculatorTest {
 
     @Test
     public void should_calculate_total_price_with_reduce_x_yuan_when_reaching_100() throws Exception {
-        Product pear = new Product(ProductName.pear, 10);
+        Product pear = new Product(ProductName.PEAR, 10);
 
         shoppingCart.add(10, pear, new ReduceXUponReaching100(5));
 
@@ -100,8 +100,8 @@ public class PriceCalculatorTest {
     }
 
     @Test
-    public void should_calculate_total_price_for_shoppingcart_with_reduce_x_yuan_when_reacing_100() throws Exception {
-        Product pear = new Product(ProductName.pear, 10);
+    public void should_calculate_total_price_for_shoppingcart_with_reduce_x_yuan_when_reaching_100() throws Exception {
+        Product pear = new Product(ProductName.PEAR, 10);
 
         shoppingCart.add(11, pear, new ReduceXUponReaching100(5)).with(new ReduceXUponReaching100(3)).promote();
 
