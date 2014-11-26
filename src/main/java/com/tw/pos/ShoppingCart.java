@@ -83,4 +83,7 @@ public class ShoppingCart extends Promotable {
         return promotionPrice;
     }
 
+    public double calculate() {
+        return getPromotionPrice();
+    }
 }
