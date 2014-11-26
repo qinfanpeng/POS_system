@@ -22,7 +22,4 @@ public class Product extends Promotable<Product> {
         return promotionPrice;
     }
 
-    public void setPromotionPrice(double promotionPrice) {
-        this.promotionPrice = promotionPrice;
-    }
 }

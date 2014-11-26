@@ -7,20 +7,18 @@ import java.util.List;
 
 public abstract class Promotable<T extends Promotable> {
     protected double promotionPrice;
-    private List<Promotion> promotionRules = new ArrayList<>();
+    private List<Promotion<Double>> promotionRules = new ArrayList<>();
 
-    protected T with(Promotion promotion) {
+    protected T with(Promotion<Double> promotion) {
         promotionRules.add(promotion);
         return (T)this;
     }
 
     public void promote() {
-        for (Promotion promotion : promotionRules) {
-            promotion.apply(this);
+        for (Promotion<Double> promotion : promotionRules) {
+            promotionPrice = promotion.apply(promotionPrice);
         }
     }
 
     public abstract double getPromotionPrice();
-
-    public abstract void setPromotionPrice(double promotionPrice);
 }

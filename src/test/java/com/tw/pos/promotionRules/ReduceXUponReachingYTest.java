@@ -14,8 +14,8 @@ public class ReduceXUponReachingYTest {
         ReduceXUponReachingY rule = new ReduceXUponReachingY(5, 100);
         Product apple = new Product(ProductName.APPLE, 100);
 
-        rule.apply(apple);
+        Double promotionPrice = rule.apply(apple.getPrice());
 
-        assertThat(apple.getPromotionPrice(), closeTo(95.0, 0.1));
+        assertThat(promotionPrice, closeTo(95.0, 0.1));
     }
 }

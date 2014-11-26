@@ -1,8 +1,6 @@
 package com.tw.pos.promotionRules;
 
-import com.tw.pos.Promotable;
-
-public class Discount implements Promotion {
+public class Discount implements Promotion<Double> {
     private double rate;
 
     public Discount(double rate) {
@@ -18,7 +16,7 @@ public class Discount implements Promotion {
     }
 
     @Override
-    public void apply(Promotable goods) {
-        goods.setPromotionPrice(goods.getPromotionPrice() * (rate / 10));
+    public Double apply(Double value) {
+        return value * (rate / 10);
     }
 }

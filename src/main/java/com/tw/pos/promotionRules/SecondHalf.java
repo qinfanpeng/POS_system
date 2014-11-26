@@ -1,8 +1,6 @@
 package com.tw.pos.promotionRules;
 
-import com.tw.pos.Promotable;
-
-public class SecondHalf implements Promotion {
+public class SecondHalf implements Promotion<Double> {
     private int amount;
 
     public SecondHalf(int amount) {
@@ -10,18 +8,9 @@ public class SecondHalf implements Promotion {
     }
 
     @Override
-    public void apply(Promotable goods) {
-        double promotionTotalPrice = 0.0;
-
-        for (int i = 1; i<= amount; i++) {
-            if (i % 2 == 0 ) {
-                promotionTotalPrice += goods.getPromotionPrice() / 2;
-            } else {
-                promotionTotalPrice += goods.getPromotionPrice();
-            }
-        }
-
-        double promotionPrice = promotionTotalPrice / amount;
-        goods.setPromotionPrice(promotionPrice);
+    public Double apply(Double value) {
+        int numOfEven = amount / 2;
+        double promotionTotalPrice = amount * value - numOfEven * value / 2;
+        return promotionTotalPrice / amount;
     }
 }

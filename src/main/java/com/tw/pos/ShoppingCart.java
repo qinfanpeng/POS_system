@@ -73,7 +73,7 @@ public class ShoppingCart extends Promotable {
     private void updatePromotionPrice() {
         double totalPrice = 0.0;
         for (ProductItem productItem : productItemList) {
-            totalPrice += productItem.getSubtotal();
+            totalPrice += productItem.promotionPrice;
         }
         this.promotionPrice = totalPrice;
     }
@@ -83,8 +83,4 @@ public class ShoppingCart extends Promotable {
         return promotionPrice;
     }
 
-    @Override
-    public void setPromotionPrice(double promotionPrice) {
-        this.promotionPrice = promotionPrice;
-    }
 }

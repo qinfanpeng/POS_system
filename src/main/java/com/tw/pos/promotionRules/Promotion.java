@@ -1,7 +1,5 @@
 package com.tw.pos.promotionRules;
 
-import com.tw.pos.Promotable;
-
-public interface Promotion {
-    void apply(Promotable goods);
+public interface Promotion<T> {
+    T apply(T value);
 }

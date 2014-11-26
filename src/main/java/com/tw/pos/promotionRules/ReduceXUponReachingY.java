@@ -1,8 +1,6 @@
 package com.tw.pos.promotionRules;
 
-import com.tw.pos.Promotable;
-
-public class ReduceXUponReachingY implements Promotion {
+public class ReduceXUponReachingY implements Promotion<Double> {
 
     private final double discount;
     private final int ceil;
@@ -13,10 +11,7 @@ public class ReduceXUponReachingY implements Promotion {
     }
 
     @Override
-    public void apply(Promotable goods) {
-        double promotionPrice = goods.getPromotionPrice();
-        if(promotionPrice >= ceil) {
-            goods.setPromotionPrice(promotionPrice - discount);
-        }
+    public Double apply(Double value) {
+        return value >= ceil ? Double.valueOf(value - discount) : value;
     }
 }

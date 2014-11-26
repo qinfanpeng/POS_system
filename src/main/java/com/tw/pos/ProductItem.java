@@ -7,7 +7,7 @@ public class ProductItem extends Promotable<ProductItem> {
     public ProductItem(int amount, Product product) {
         this.amount = amount;
         this.product = product;
-        this.promotionPrice = product.getPromotionPrice() * amount;
+        this.promotionPrice = product.promotionPrice * amount;
     }
 
     public int getAmount() {
@@ -22,17 +22,8 @@ public class ProductItem extends Promotable<ProductItem> {
         return product.getName();
     }
 
-    public double getSubtotal() {
-        return promotionPrice;
-    }
-
     @Override
     public double getPromotionPrice() {
         return promotionPrice;
-    }
-
-    @Override
-    public void setPromotionPrice(double promotionPrice) {
-        this.promotionPrice = promotionPrice;
     }
 }
