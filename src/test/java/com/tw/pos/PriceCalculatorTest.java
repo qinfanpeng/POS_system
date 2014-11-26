@@ -1,7 +1,7 @@
 package com.tw.pos;
 
 import com.tw.pos.promotionRules.Discount;
-import com.tw.pos.promotionRules.ReduceXUponReaching100;
+import com.tw.pos.promotionRules.ReduceXUponReachingY;
 import com.tw.pos.promotionRules.SecondHalf;
 import org.junit.Before;
 import org.junit.Test;
@@ -94,16 +94,16 @@ public class PriceCalculatorTest {
     public void should_calculate_total_price_with_reduce_x_yuan_when_reaching_100() throws Exception {
         Product pear = new Product(ProductName.PEAR, 10);
 
-        shoppingCart.add(10, pear, new ReduceXUponReaching100(5));
+        shoppingCart.add(10, pear, new ReduceXUponReachingY(5, 100));
 
         assertThat(priceCalculator.calculate(), closeTo(95, 0.1));
     }
 
     @Test
-    public void should_calculate_total_price_for_shoppingcart_with_reduce_x_yuan_when_reaching_100() throws Exception {
+    public void should_calculate_total_price_for_shopping_cart_with_reduce_x_yuan_when_reaching_100() throws Exception {
         Product pear = new Product(ProductName.PEAR, 10);
 
-        shoppingCart.add(11, pear, new ReduceXUponReaching100(5)).with(new ReduceXUponReaching100(3)).promote();
+        shoppingCart.add(11, pear, new ReduceXUponReachingY(5, 100)).with(new ReduceXUponReachingY(3, 100)).promote();
 
         assertThat(priceCalculator.calculate(), closeTo(102, 0.1));
     }
