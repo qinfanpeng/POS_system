@@ -29,7 +29,7 @@ public class ShoppingCartTest{
     public void should_add_product() throws Exception {
         shoppingCart.add(1, new Product(APPLE, 5));
 
-        assertThat(shoppingCart.getAmountOf(APPLE), is(1));
+        assertThat(shoppingCart.amountOf(APPLE), is(1));
     }
 
     @Test
@@ -37,8 +37,8 @@ public class ShoppingCartTest{
         shoppingCart.add(1, new Product(APPLE, 5));
         shoppingCart.add(2, new Product(PEAR, 7));
 
-        assertThat(shoppingCart.getAmountOf(APPLE), is(1));
-        assertThat(shoppingCart.getAmountOf(PEAR), is(2));
+        assertThat(shoppingCart.amountOf(APPLE), is(1));
+        assertThat(shoppingCart.amountOf(PEAR), is(2));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ShoppingCartTest{
     public void should_remove_product() throws Exception {
         shoppingCart.add(1, new Product(APPLE, 5));
         shoppingCart.remove(1, APPLE);
-        assertThat(shoppingCart.getAmountOf(APPLE), is(0));
+        assertThat(shoppingCart.amountOf(APPLE), is(0));
     }
 
     @Test

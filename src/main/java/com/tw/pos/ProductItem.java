@@ -18,12 +18,12 @@ public class ProductItem extends Promotable<ProductItem> {
         this.amount = amount;
     }
 
-    public ProductName getProductName() {
-        return product.getName();
-    }
-
     @Override
     public double getPromotionPrice() {
         return promotionPrice;
+    }
+
+    public boolean isFor(ProductName name) {
+        return product.getName().equals(name);
     }
 }

@@ -1,9 +1,13 @@
 package com.tw.pos;
 
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import com.tw.pos.promotionRules.Promotion;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.common.collect.Iterables.tryFind;
 
 public class ShoppingCart extends Promotable {
     private List<ProductItem> productItemList = new ArrayList<>();
@@ -27,38 +31,36 @@ public class ShoppingCart extends Promotable {
         return productItem;
     }
 
-    public int getAmountOf(ProductName productName) {
-        ProductItem productItem = findProductItemBy(productName);
-        int amount = 0;
-        if (productItem != null) {
-            amount = productItem.getAmount();
-        }
-        return amount;
+    public int amountOf(ProductName productName) {
+        return find(by(productName)).or(new ProductItem(0, new Product(null, 0.0))).getAmount();
     }
 
-    private ProductItem findProductItemBy(ProductName productName) {
-        ProductItem result = null;
-        for (ProductItem productItem : productItemList) {
-            if (productItem.getProductName().equals(productName)) {
-                result = productItem;
+    private Predicate<ProductItem> by(final ProductName name) {
+        return new Predicate<ProductItem>() {
+            @Override
+            public boolean apply(ProductItem item) {
+                return item.isFor(name);
             }
-        }
-        return result;
+        };
+    }
+
+    private Optional<ProductItem> find(Predicate<ProductItem> match) {
+        return tryFind(productItemList, match);
     }
 
     public void remove(int amount, ProductName productName) {
-        ProductItem productItem = findProductItemBy(productName);
-        if (productItem == null) {
+        Optional<ProductItem> productItem = find(by(productName));
+        if (!productItem.isPresent()) {
             throw new IllegalArgumentException("Can't find any " + productName + " to remove!");
         }
 
-        int newAmount = productItem.getAmount() - amount;
+        int restOfAmount = productItem.get().getAmount() - amount;
 
-        if (newAmount < 0) {
+        if (restOfAmount < 0) {
             throw new IllegalArgumentException("There're no " + amount + " " + productName + "s to remove!");
         }
 
-        updateProductItemList(newAmount, productItem);
+        updateProductItemList(restOfAmount, productItem.get());
     }
 
     private void updateProductItemList(int amount, ProductItem productItem) {

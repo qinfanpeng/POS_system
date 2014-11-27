@@ -19,5 +19,6 @@ idea {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:18.0'
     testCompile 'junit:junit:4.11', 'org.hamcrest:hamcrest-all:1.3'
 }
