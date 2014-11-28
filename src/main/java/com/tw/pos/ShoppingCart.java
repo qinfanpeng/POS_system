@@ -85,4 +85,7 @@ public class ShoppingCart extends Promotable {
         return promotionPrice;
     }
 
+    public void add(Product product) {
+        add(1, product);
+    }
 }
